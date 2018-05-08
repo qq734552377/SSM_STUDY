@@ -1,0 +1,17 @@
+create table USER(
+	NAME varchar(15),
+	SEX varchar(20),
+	LOGINID varchar(20),
+	PWD varchar(50),
+	DUTY varchar(50),
+	AGE integer,
+	cellNumber varchar(50),
+	photoUrl varchar(50)
+);
+
+insert into user (NAME,SEX,LOGINID,PWD,DUTY,AGE,cellNumber,photoUrl) values 
+('张十三','男'，'zss','123','探员',25,'95287','https://www.duitang.com/blog/?id=258777720');
+
+
+INSERT INTO `repair`.`user` (`NAME`, `SEX`, `LOGINID`, `PWD`, `DUTY`, `AGE`, `cellNumber`, `photoUrl`) VALUES 
+('王武', '女', 'ww', '123', '刺客', '21', '98645123', 'https://www.duitang.com/blog/?id=258777720');
