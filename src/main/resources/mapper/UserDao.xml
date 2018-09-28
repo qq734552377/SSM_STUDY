@@ -2,6 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.acheng1314.dao.UserDao">
+
+    <!--
+     ehcache已经配置好了,然后只需要在想要缓存的mapper配置文件里面加入以下内容,该查询语句得到的结果将会被缓存
+     以下两个<cache>标签都可以,第一个可以输出日志,第二个不输出日志
+      <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
+      <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
+     -->
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
+
+
     <!--查找-->
     <select id="findOneById" resultType="User" parameterType="String">
     SELECT
@@ -9,14 +19,14 @@
     FROM
     `user`
     WHERE
-    loginid = #{userId}
+    login_id = #{userId}
 </select>
 
     <!--增加语句-->
     <insert id="add" parameterType="User">
     INSERT INTO
     `user`
-    (`loginid`,`name`,`age`,`sex`,`duty`,`cellnumber`,`photourl`,`pwd`,`used`)
+    (`login_id`,`name`,`age`,`sex`,`duty`,`cellnumber`,`photourl`,`pwd`,`used`)
     VALUES
     (#{loginId},#{name},#{age},#{sex},#{duty},#{cellNumber},#{photoUrl},#{pwd},#{used})
 </insert>
@@ -28,7 +38,7 @@
         SET
         `used`=FALSE
         WHERE
-        `loginid`=#{loginId};
+        `login_id`=#{loginId};
     </update>
 
     <!-- 更新用户信息 -->
@@ -38,7 +48,7 @@
         SET
         `name`=#{name}, `age`=#{age}, `sex`=#{sex}, `duty`=#{duty}, `cell_number`=#{cellNumber}, `photo_url`=#{photoUrl}
         WHERE
-        `loginid`=#{loginId};
+        `login_id`=#{loginId};
     </update>
 
     <!-- 用户注册时，添加session -->

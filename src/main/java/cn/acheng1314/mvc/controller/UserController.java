@@ -7,6 +7,8 @@ import cn.acheng1314.service.UserService;
 import cn.acheng1314.service.serviceImpl.UserServiceImpl;
 import cn.acheng1314.utils.GsonUtils;
 import cn.acheng1314.utils.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -29,7 +31,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/userAction")
 public class UserController {
-
+    Logger log = LoggerFactory.getLogger(this.getClass());
     @Resource(name = "userServiceImpl")
     private UserService userService;    //自动载入Service对象
     private ResponseObj responseObj;
@@ -100,6 +102,8 @@ public class UserController {
     @ResponseBody
     public Object login(HttpServletRequest request, HttpServletResponse response, User user, HttpSession session) throws Exception {
         Object result;
+        log.info("用户登录请求一次");
+        System.out.println("System :: 用户登录请求一次");
         if (null == user) {
             responseObj = new ResponseObj<User>();
             responseObj.setCode(ResponseObj.EMPUTY);
